@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Globals:
+  Function:
+    Timeout: 6
+
+Resources:
+  GraphQLFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: graphql.handler
+      Runtime: nodejs12.x
+      Events:
+        GraphQL:
+          Type: Api
+          Properties:
+            Path: /graphql
+            Method: any
+      Environment:
+        Variables:
+          NODE_ENV: production"
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  GraphQLApi:
+    Description: "API Gateway endpoint URL for Prod stage for GraphQL lambda function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/graphql"
+    Export:
+      Name: GraphQLApi

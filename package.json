@@ -1,0 +1,18 @@
+{
+  "name": "graphql-serverless",
+  "version": "1.0.0",
+  "description": "A GraphQL server on AWS lambda",
+  "main": "graphql.js",
+  "scripts": {
+    "cloud:create-s3-bucket": "aws s3 mb s3://serverless-graphql-johndous --region eu-central-1",
+    "cloud:package": "aws cloudformation package --template-file template.yml --output-template-file template-output.yml --s3-bucket serverless-graphql-johndous",
+    "cloud:deploy": "aws cloudformation deploy --template-file template-output.yml --stack-name serverless-graphql --capabilities CAPABILITY_IAM --no-fail-on-empty-changeset",
+    "cloud:list-exports": "aws cloudformation list-exports --query \"Exports[?Name=='GraphQLApi'].Value\"",
+    "deploy": "npm run cloud:package && npm run cloud:deploy && npm run cloud:list-export"
+  },
+  "author": "Johndous",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server-lambda": "^2.14.4"
+  }
+}
