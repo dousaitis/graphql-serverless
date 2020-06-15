@@ -6,12 +6,14 @@ Repo for the blog post https://johndous.com/posts/serverless-graphql-server-on-a
 
 # Getting Started
 
-`npm i`
-`npm run cloud:create-s3-bucket` //Change the `serverless-graphql-johndous` with your S3 bucket
-`npm run cloud:package` //Change the `serverless-graphql-johndous` with your S3 bucket
-`npm run cloud:deploy` //Deploy the code to Lambda
-`npm run cloud:list-exports` //Export the URL of the the serverless GraphQL Server
-
+Please edit the `package.json` and replace the `serverless-graphql-johndous` s3 bucket with your universally unique s3 bucket name.
+```bash
+npm i
+npm run cloud:create-s3-bucket
+npm run cloud:package
+npm run cloud:deploy
+npm run cloud:list-exports
+```
 or just
 
-`npm run`
+`npm run deploy`
